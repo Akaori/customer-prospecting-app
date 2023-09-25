@@ -26,6 +26,7 @@ public class SecurityConfig {
 
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http.headers(AbstractHttpConfigurer::disable);
         http
                 .cors(Customizer.withDefaults()) // by default uses a Bean by the name of corsConfigurationSource
                 .authorizeRequests((authorize) -> authorize.requestMatchers(publicPaths)
