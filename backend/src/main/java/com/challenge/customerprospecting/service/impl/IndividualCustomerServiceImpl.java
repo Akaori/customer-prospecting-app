@@ -15,6 +15,12 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
     final IndividualCustomerRepository individualCustomerRepository;
     @Override
     public IndividualCustomer save(IndividualCustomerPostRequestDTO individualCustomerPostRequestDTO) {
-        return individualCustomerRepository.save(new IndividualCustomer(individualCustomerPostRequestDTO));
+        IndividualCustomerPostRequestDTO individualCustomer = IndividualCustomerPostRequestDTO.builder()
+                                                            .name(individualCustomerPostRequestDTO.getName())
+                                                            .mcc(individualCustomerPostRequestDTO.getMcc())
+                                                            .cpf(individualCustomerPostRequestDTO.getCpf())
+                                                            .email(individualCustomerPostRequestDTO.getEmail())
+                                                            .build();
+        return individualCustomerRepository.save(new IndividualCustomer(individualCustomer));
     }
 }
