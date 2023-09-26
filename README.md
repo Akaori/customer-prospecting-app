@@ -1,6 +1,6 @@
 # Customer Prospecting App
 
-![test workflow](https://github.com/Akaori/customer-prospecting-app/actions/workflows/test.yml/badge.svg)
+![test workflow](https://github.com/Akaori/customer-prospecting-app/actions/workflows/test.yaml/badge.svg)
 
 ## Como entrar no Swagger
 
@@ -28,3 +28,9 @@ http://localhost:8080/h2-console
 ![access_h2.png](images/access_h2.png)
 
 - Clicar em `Connect`
+
+
+## Testes automatizados
+
+- Testes unitários para os serviços
+- CI com Github Actions

@@ -3,9 +3,11 @@ package com.challenge.customerprospecting.controller;
 
 import com.challenge.customerprospecting.dto.IndividualCustomerPostRequestDTO;
 import com.challenge.customerprospecting.entity.IndividualCustomer;
+import com.challenge.customerprospecting.entity.LegalEntityCustomer;
 import com.challenge.customerprospecting.service.IndividualCustomerService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,7 +26,6 @@ public class IndividualCustomerController {
 
     @PostMapping
     public ResponseEntity<IndividualCustomer> save(@RequestBody @Valid IndividualCustomerPostRequestDTO individualCustomer) {
-        IndividualCustomer createdIndividualCustomer = individualCustomerService.save(individualCustomer);
-        return ResponseEntity.ok().body(createdIndividualCustomer);
+        return new ResponseEntity<IndividualCustomer>(individualCustomerService.save(individualCustomer), HttpStatus.CREATED);
     }
 }

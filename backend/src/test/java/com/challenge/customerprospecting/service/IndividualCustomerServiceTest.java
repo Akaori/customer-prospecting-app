@@ -10,12 +10,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.*;
 
 import com.challenge.customerprospecting.repository.IndividualCustomerRepository;
