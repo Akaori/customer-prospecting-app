@@ -1,6 +1,7 @@
 package com.challenge.customerprospecting.config;
 
 
+import com.challenge.customerprospecting.service.exceptions.IndividualCustomerAlreadyExistsException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +24,12 @@ public class GlobalExceptionHandler {
         List<String> errors = ex.getBindingResult().getFieldErrors()
                 .stream().map(FieldError::getDefaultMessage).collect(Collectors.toList());
         return new ResponseEntity<>(getErrorsMap(errors), new HttpHeaders(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(IndividualCustomerAlreadyExistsException.class)
+    public ResponseEntity<Map<String, List<String>>> handleAlreadyExistsException(IndividualCustomerAlreadyExistsException ex) {
+        List<String> errors = Collections.singletonList(ex.getMessage());
+        return new ResponseEntity<>(getErrorsMap(errors), new HttpHeaders(), HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(Exception.class)
