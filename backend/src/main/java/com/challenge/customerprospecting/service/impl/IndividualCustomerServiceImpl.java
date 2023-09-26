@@ -30,7 +30,7 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
         return individualCustomerRepository.save(new IndividualCustomer(individualCustomer));
     }
 
-    private void checkIfCustomerAlreadyExists(String cpf) {
+    public void checkIfCustomerAlreadyExists(String cpf) {
         List<IndividualCustomer> existentCustomer = individualCustomerRepository.findByCpf(cpf);
         if (existentCustomer.size() > 0) {
             throw new IndividualCustomerAlreadyExistsException(cpf);
