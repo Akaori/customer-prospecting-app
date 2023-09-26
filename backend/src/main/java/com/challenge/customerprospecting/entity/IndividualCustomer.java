@@ -2,24 +2,28 @@ package com.challenge.customerprospecting.entity;
 
 import com.challenge.customerprospecting.dto.IndividualCustomerPostRequestDTO;
 import lombok.Data;
-
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import jakarta.persistence.*;
 
 @Entity
 @Data
 @Table(name = "IndividualCustomer")
-public class IndividualCustomer extends Customer {
+public class IndividualCustomer {
 
-    @NotBlank(message = "O campo 'Nome' é obrigatório")
-    @Size(max = 50)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false, length = 50)
     private String name;
 
-    @NotBlank(message = "O campo 'CPF' é obrigatório")
-    @Size(min = 11, max = 11)
+    @Column(nullable = false, length = 4)
+    private String mcc;
+
+    @Column(nullable = false, length = 11)
     private String cpf;
+
+    @Column(nullable = false)
+    private String email;
 
     public IndividualCustomer(IndividualCustomerPostRequestDTO individualCustomerPostRequestDTO) {
         this.setName(individualCustomerPostRequestDTO.getName());
