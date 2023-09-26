@@ -20,14 +20,7 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
         // Check if customer cpf already exists in database
         this.checkIfCustomerAlreadyExists(individualCustomerPostRequestDTO.getCpf());
 
-        // Save new customer in database
-        IndividualCustomerPostRequestDTO individualCustomer = IndividualCustomerPostRequestDTO.builder()
-                                                            .name(individualCustomerPostRequestDTO.getName())
-                                                            .mcc(individualCustomerPostRequestDTO.getMcc())
-                                                            .cpf(individualCustomerPostRequestDTO.getCpf())
-                                                            .email(individualCustomerPostRequestDTO.getEmail())
-                                                            .build();
-        return individualCustomerRepository.save(new IndividualCustomer(individualCustomer));
+        return individualCustomerRepository.save(new IndividualCustomer(individualCustomerPostRequestDTO));
     }
 
     public void checkIfCustomerAlreadyExists(String cpf) {
