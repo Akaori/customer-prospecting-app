@@ -1,6 +1,6 @@
 # Customer Prospecting App
 
-![test workflow](https://github.com/Akaori/customer-prospecting-app/actions/workflows/test.yml/badge.svg)
+![test workflow](https://github.com/Akaori/customer-prospecting-app/actions/workflows/test.yaml/badge.svg)
 
 ## Como entrar no Swagger
 
