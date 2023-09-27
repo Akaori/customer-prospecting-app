@@ -1,6 +1,7 @@
 package com.challenge.customerprospecting.service;
 
 import com.challenge.customerprospecting.service.exceptions.IndividualCustomerAlreadyExistsException;
+import com.challenge.customerprospecting.service.impl.IndividualCustomerQueueServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -28,6 +29,9 @@ public class IndividualCustomerServiceTest {
 
     @InjectMocks
     private IndividualCustomerServiceImpl individualCustomerService;
+
+    @Mock
+    private IndividualCustomerQueueServiceImpl individualCustomerQueueService;
 
     @Test
     public void testFindAll() {
@@ -81,6 +85,9 @@ public class IndividualCustomerServiceTest {
         // Call the service method with the DTO and assert that it returns the entity
         IndividualCustomer result = individualCustomerService.save(dto);
         assertEquals(entity, result);
+
+        // Verify the interactions with the queue mock
+        verify(individualCustomerQueueService, times(1)).enqueueCustomer(result);
 
         // Verify that the repository method was called once
         verify(individualCustomerRepository, times(1)).save(entity);
@@ -195,6 +202,9 @@ public class IndividualCustomerServiceTest {
         // Call the service method with the DTO and the id and assert that it returns the entity
         IndividualCustomer result = individualCustomerService.update(dto, id);
         assertEquals(entity, result);
+
+        // Verify the interactions with the queue mock
+        verify(individualCustomerQueueService, times(1)).enqueueCustomer(result);
 
         // Verify that the repository method was called once
         verify(individualCustomerRepository, times(1)).save(entity);
