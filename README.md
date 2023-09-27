@@ -25,6 +25,21 @@ class LegalEntityCustomer {
 }
 ```
 
+# Instruções
+
+## Clonar repositório
+
+```
+git clone https://github.com/Akaori/customer-prospecting-app.git
+
+```
+
+## Mudar para diretório do repositório clonado
+
+```
+cd customer-prospecting-app
+```
+
 ## Como entrar no Swagger
 
 - Acessar a seguinte URL:
