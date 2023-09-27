@@ -2,6 +2,29 @@
 
 ![test workflow](https://github.com/Akaori/customer-prospecting-app/actions/workflows/test.yaml/badge.svg)
 
+## Estrutura de tabelas
+
+```mermaid
+classDiagram
+class IndividualCustomer {
++Long id
++String name
++String mcc
++String cpf
++String email
+}
+
+class LegalEntityCustomer {
++Long id
++String corporateName
++String cnpj
++String mcc
++String contactName
++String contactCpf
++String email
+}
+```
+
 ## Como entrar no Swagger
 
 - Acessar a seguinte URL:
