@@ -8,6 +8,8 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.Collections;
 import static org.mockito.Mockito.*;
@@ -27,6 +29,38 @@ public class IndividualCustomerServiceTest {
     @InjectMocks
     private IndividualCustomerServiceImpl individualCustomerService;
 
+    @Test
+    public void testFindAll() {
+        // Create a list of entity objects with some sample data
+        List<IndividualCustomer> entities = new ArrayList<>();
+
+        IndividualCustomer entity1 = new IndividualCustomer();
+        entity1.setId(1L);
+        entity1.setName("John Doe");
+        entity1.setMcc("1234");
+        entity1.setCpf("11111111111");
+        entity1.setEmail("john.doe@example.com");
+
+        IndividualCustomer entity2 = new IndividualCustomer();
+        entity2.setId(2L);
+        entity2.setName("John Doe");
+        entity2.setMcc("1234");
+        entity2.setCpf("11111111111");
+        entity2.setEmail("john.doe@example.com");
+
+        entities.add(entity1);
+        entities.add(entity2);
+
+        // Stub the repository method to return the list when finding all
+        when(individualCustomerRepository.findAll()).thenReturn(entities);
+
+        // Call the service method and assert that it returns the same list
+        List<IndividualCustomer> result = individualCustomerService.findAll();
+        assertEquals(entities, result);
+
+        // Verify that the repository method was called once
+        verify(individualCustomerRepository, times(1)).findAll();
+    }
 
     @Test
     public void testSave() {

@@ -14,6 +14,8 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.Collections;
 import static org.mockito.Mockito.*;
@@ -28,6 +30,42 @@ public class LegalEntityCustomerServiceTest {
     @InjectMocks
     private LegalEntityCustomerServiceImpl legalEntityCustomerService;
 
+
+    @Test
+    public void testFindAll() {
+        // Create a list of entity objects with some sample data
+        List<LegalEntityCustomer> entities = new ArrayList<>();
+        LegalEntityCustomer entity1 = new LegalEntityCustomer();
+        entity1.setId(1L);
+        entity1.setCorporateName("ABC Inc.");
+        entity1.setCnpj("12345678901234");
+        entity1.setMcc("0000");
+        entity1.setContactName("Teste");
+        entity1.setContactCpf("11111111111");
+        entity1.setEmail("abc@example.com");
+
+        LegalEntityCustomer entity2 = new LegalEntityCustomer();
+        entity2.setId(2L);
+        entity2.setCorporateName("ABC Inc.");
+        entity2.setCnpj("12345678901234");
+        entity2.setMcc("0000");
+        entity2.setContactName("Teste");
+        entity2.setContactCpf("11111111111");
+        entity2.setEmail("abc@example.com");
+
+        entities.add(entity1);
+        entities.add(entity2);
+
+        // Stub the repository method to return the list when finding all
+        when(legalEntityCustomerRepository.findAll()).thenReturn(entities);
+
+        // Call the service method and assert that it returns the same list
+        List<LegalEntityCustomer> result = legalEntityCustomerService.findAll();
+        assertEquals(entities, result);
+
+        // Verify that the repository method was called once
+        verify(legalEntityCustomerRepository, times(1)).findAll();
+    }
 
     @Test
     public void testSave() {
