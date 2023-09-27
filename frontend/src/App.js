@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { ColorModeContext, useMode } from "./theme";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { Routes, Route } from "react-router-dom";
@@ -15,53 +16,57 @@ import Home from "./scenes/home";
 
 function App() {
   const [theme, colorMode] = useMode();
+  const [isSidebar, setIsSidebar] = useState(true);
 
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <main className="content">
-          <Topbar />
+        <div className="app">
+          <Sidebar isSidebar={isSidebar} />
+          <main className="content">
+            <Topbar />
 
-          <Routes>
-            <Route
-              path="/"
-              element={<Home />}
-            />
-            {/* <Route
+            <Routes>
+              <Route
+                path="/"
+                element={<Home />}
+              />
+              {/* <Route
               path="/legal-entity-customer/add-customer-form"
               element={<AddLegalEntityCustomerForm />}
             /> */}
-            {/* <Route
+              {/* <Route
               path="/legal-entity-customer/update-customer-form"
               element={<EditLegalEntityCustomerForm />}
             /> */}
-            {/* <Route
+              {/* <Route
               path="/legal-entity-customer/list"
               element={<LegalEntityCustomerList />}
             /> */}
-            {/* <Route
+              {/* <Route
               path="/legal-entity-customer/prospect"
               element={<ProspectLegalEntityCustomer />}
             /> */}
-            {/* <Route
+              {/* <Route
               path="/individual-customer/add-customer-form"
               element={<AddIndividualCustomerForm />}
             /> */}
-            {/* <Route
+              {/* <Route
               path="/individual-customer/update-customer-form"
               element={<EditIndividualCustomerForm />}
             /> */}
-            {/* <Route
+              {/* <Route
               path="/individual-customer/list"
               element={<IndividualCustomerList />}
             /> */}
-            {/* <Route
+              {/* <Route
               path="/individual-customer/prospect"
               element={<ProspectIndividualCustomer />}
             /> */}
-          </Routes>
-        </main>
+            </Routes>
+          </main>
+        </div>
       </ThemeProvider>
     </ColorModeContext.Provider>
   );
