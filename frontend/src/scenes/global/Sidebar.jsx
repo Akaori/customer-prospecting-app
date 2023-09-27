@@ -100,6 +100,13 @@ const Sidebar = () => {
               Pessoa Jurídica
             </Typography>
             <Item
+              title="Clientes Cadastrados"
+              to="/legal-entity-customer/list"
+              icon={<ReceiptOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
               title="Novo Cadastro"
               to="/legal-entity-customer/add-customer-form"
               icon={<PeopleOutlinedIcon />}
@@ -110,13 +117,6 @@ const Sidebar = () => {
               title="Editar cadastro"
               to="/legal-entity-customer/update-customer-form"
               icon={<ContactsOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
-              title="Clientes Cadastrados"
-              to="/legal-entity-customer/list"
-              icon={<ReceiptOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
@@ -136,6 +136,13 @@ const Sidebar = () => {
               Pessoa Física
             </Typography>
             <Item
+              title="Clientes Cadastrados"
+              to="/individual-customer/list"
+              icon={<ReceiptOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
               title="Novo Cadastro"
               to="/individual-customer/add-customer-form"
               icon={<PeopleOutlinedIcon />}
@@ -146,13 +153,6 @@ const Sidebar = () => {
               title="Editar cadastro"
               to="/individual-customer/update-customer-form"
               icon={<ContactsOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
-              title="Clientes Cadastrados"
-              to="/individual-customer/list"
-              icon={<ReceiptOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
