@@ -1,9 +1,7 @@
 package com.challenge.customerprospecting.controller;
 
-import com.challenge.customerprospecting.dto.IndividualCustomerPutRequestDTO;
 import com.challenge.customerprospecting.dto.LegalEntityCustomerPostRequestDTO;
 import com.challenge.customerprospecting.dto.LegalEntityCustomerPutRequestDTO;
-import com.challenge.customerprospecting.entity.IndividualCustomer;
 import com.challenge.customerprospecting.entity.LegalEntityCustomer;
 import com.challenge.customerprospecting.service.LegalEntitycustomerService;
 import jakarta.validation.Valid;
@@ -13,12 +11,19 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @Validated
 @RequiredArgsConstructor
 @RequestMapping(value = "/api/v1/legal-entity-customers", produces = "application/json")
 public class LegalEntityCustomerController {
     private final LegalEntitycustomerService legalEntitycustomerService;
+
+    @GetMapping
+    public ResponseEntity<List<LegalEntityCustomer>> findAll() {
+        return ResponseEntity.ok().body(legalEntitycustomerService.findAll());
+    }
 
     @PostMapping
     public ResponseEntity<LegalEntityCustomer> save(@RequestBody @Valid LegalEntityCustomerPostRequestDTO legalEntityCustomer) {

@@ -7,6 +7,8 @@ import com.challenge.customerprospecting.entity.LegalEntityCustomer;
 import java.util.List;
 
 public interface LegalEntitycustomerService {
+
+    List<LegalEntityCustomer> findAll();
     LegalEntityCustomer save(LegalEntityCustomerPostRequestDTO legalEntityCustomerPostRequestDTO);
 
     LegalEntityCustomer findById(Long id);
