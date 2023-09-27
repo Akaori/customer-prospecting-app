@@ -1,6 +1,7 @@
 package com.challenge.customerprospecting.entity;
 
 import com.challenge.customerprospecting.dto.LegalEntityCustomerPostRequestDTO;
+import com.challenge.customerprospecting.dto.LegalEntityCustomerPutRequestDTO;
 import lombok.Data;
 import jakarta.persistence.*;
 import lombok.RequiredArgsConstructor;
@@ -39,5 +40,15 @@ public class LegalEntityCustomer {
         this.setContactName(legalEntityCustomerPostRequestDTO.getContactName());
         this.setContactCpf(legalEntityCustomerPostRequestDTO.getContactCpf());
         this.setEmail(legalEntityCustomerPostRequestDTO.getEmail());
+    }
+
+    public LegalEntityCustomer(LegalEntityCustomerPutRequestDTO legalEntityCustomerPutRequestDTO) {
+        this.setId(legalEntityCustomerPutRequestDTO.getId());
+        this.setCorporateName(legalEntityCustomerPutRequestDTO.getCorporateName());
+        this.setCnpj(legalEntityCustomerPutRequestDTO.getCnpj());
+        this.setMcc(legalEntityCustomerPutRequestDTO.getMcc());
+        this.setContactName(legalEntityCustomerPutRequestDTO.getContactName());
+        this.setContactCpf(legalEntityCustomerPutRequestDTO.getContactCpf());
+        this.setEmail(legalEntityCustomerPutRequestDTO.getEmail());
     }
 }

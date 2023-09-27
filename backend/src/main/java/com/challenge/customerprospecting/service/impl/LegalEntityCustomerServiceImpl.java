@@ -1,5 +1,7 @@
 package com.challenge.customerprospecting.service.impl;
 
+import com.challenge.customerprospecting.dto.LegalEntityCustomerPutRequestDTO;
+import com.challenge.customerprospecting.service.exceptions.LegalEntityCustomerNotFoundException;
 import com.challenge.customerprospecting.service.exceptions.LegalEntityCustomerAlreadyExistsException;
 import com.challenge.customerprospecting.dto.LegalEntityCustomerPostRequestDTO;
 import com.challenge.customerprospecting.entity.LegalEntityCustomer;
@@ -25,6 +27,18 @@ public class LegalEntityCustomerServiceImpl implements LegalEntitycustomerServic
 
         return legalEntityCustomerRepository.save(new LegalEntityCustomer(legalEntityCustomerPostRequestDTO));
     }
+
+    @Override
+    public LegalEntityCustomer findById(Long id) {
+        return legalEntityCustomerRepository.findById(id).orElseThrow(() -> new LegalEntityCustomerNotFoundException(id));
+    }
+
+    @Override
+    public LegalEntityCustomer update(LegalEntityCustomerPutRequestDTO legalEntityCustomerPutRequestDTO, Long id) {
+        this.findById(id);
+        return legalEntityCustomerRepository.save(new LegalEntityCustomer(legalEntityCustomerPutRequestDTO));
+    }
+
 
     public void checkIfCustomerAlreadyExists(String cnpj) {
         List<LegalEntityCustomer> existentCustomer = legalEntityCustomerRepository.findByCnpj(cnpj);
