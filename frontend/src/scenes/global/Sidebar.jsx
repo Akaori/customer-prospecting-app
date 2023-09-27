@@ -4,7 +4,6 @@ import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
 import "react-pro-sidebar/dist/css/styles.css";
 import { tokens } from "../../theme";
-import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
 import PeopleOutlinedIcon from "@mui/icons-material/PeopleOutlined";
 import ContactsOutlinedIcon from "@mui/icons-material/ContactsOutlined";
 import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
@@ -16,11 +15,11 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
   const colors = tokens(theme.palette.mode);
   return (
     <MenuItem
-      active={selected === title}
+      active={selected === to}
       style={{
         color: colors.grey[100],
       }}
-      onClick={() => setSelected(title)}
+      onClick={() => setSelected(to)}
       icon={icon}
     >
       <Typography>{title}</Typography>
@@ -33,7 +32,7 @@ const Sidebar = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const [selected, setSelected] = useState("Dashboard");
+  const [selected, setSelected] = useState("/legal-entity-customer/list");
 
   return (
     <Box
@@ -84,14 +83,6 @@ const Sidebar = () => {
           </MenuItem>
 
           <Box paddingLeft={isCollapsed ? undefined : "10%"}>
-            <Item
-              title="Home"
-              to="/"
-              icon={<HomeOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-
             <Typography
               variant="h6"
               color={colors.grey[300]}
