@@ -6,6 +6,7 @@ import com.challenge.customerprospecting.entity.LegalEntityCustomer;
 import com.challenge.customerprospecting.repository.LegalEntityCustomerRepository;
 import com.challenge.customerprospecting.service.exceptions.LegalEntityCustomerAlreadyExistsException;
 import com.challenge.customerprospecting.service.exceptions.LegalEntityCustomerNotFoundException;
+import com.challenge.customerprospecting.service.impl.LegalEntityCustomerQueueServiceImpl;
 import com.challenge.customerprospecting.service.impl.LegalEntityCustomerServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -30,6 +31,8 @@ public class LegalEntityCustomerServiceTest {
     @InjectMocks
     private LegalEntityCustomerServiceImpl legalEntityCustomerService;
 
+    @Mock
+    private LegalEntityCustomerQueueServiceImpl legalEntityCustomerQueueService;
 
     @Test
     public void testFindAll() {
@@ -88,6 +91,9 @@ public class LegalEntityCustomerServiceTest {
         // Call the service method with the DTO and assert that it returns the entity
         LegalEntityCustomer result = legalEntityCustomerService.save(dto);
         assertEquals(entity, result);
+
+        // Verify the interactions with the queue mock
+        verify(legalEntityCustomerQueueService, times(1)).enqueueCustomer(result);
 
         // Verify that the repository method was called once
         verify(legalEntityCustomerRepository, times(1)).save(entity);
@@ -207,6 +213,9 @@ public class LegalEntityCustomerServiceTest {
         // Call the service method with the DTO and the id and assert that it returns the entity
         LegalEntityCustomer result = legalEntityCustomerService.update(dto, id);
         assertEquals(entity, result);
+
+        // Verify the interactions with the queue mock
+        verify(legalEntityCustomerQueueService, times(1)).enqueueCustomer(result);
 
         // Verify that the repository method was called once
         verify(legalEntityCustomerRepository, times(1)).save(entity);

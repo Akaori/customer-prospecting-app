@@ -4,6 +4,7 @@ import com.challenge.customerprospecting.dto.IndividualCustomerPostRequestDTO;
 import com.challenge.customerprospecting.dto.IndividualCustomerPutRequestDTO;
 import com.challenge.customerprospecting.entity.IndividualCustomer;
 import com.challenge.customerprospecting.repository.IndividualCustomerRepository;
+import com.challenge.customerprospecting.service.IndividualCustomerQueueService;
 import com.challenge.customerprospecting.service.IndividualCustomerService;
 import com.challenge.customerprospecting.service.exceptions.IndividualCustomerAlreadyExistsException;
 import com.challenge.customerprospecting.service.exceptions.IndividualCustomerNotFoundException;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Service;
 public class IndividualCustomerServiceImpl implements IndividualCustomerService {
 
     final IndividualCustomerRepository individualCustomerRepository;
+    final IndividualCustomerQueueService individualCustomerQueueService;
 
     @Override
     public List<IndividualCustomer> findAll() {
@@ -28,7 +30,13 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
         // Check if customer cpf already exists in database
         this.checkIfCustomerAlreadyExists(individualCustomerPostRequestDTO.getCpf());
 
-        return individualCustomerRepository.save(new IndividualCustomer(individualCustomerPostRequestDTO));
+        // Save customer
+        IndividualCustomer savedCustomer = individualCustomerRepository.save(new IndividualCustomer(individualCustomerPostRequestDTO));
+
+        // Enqueue the saved customer to the service queue
+        individualCustomerQueueService.enqueueCustomer(savedCustomer);
+
+        return savedCustomer;
     }
 
     @Override
@@ -39,7 +47,14 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
     @Override
     public IndividualCustomer update(IndividualCustomerPutRequestDTO individualCustomerPutRequestDTO, Long id) {
         this.findById(id);
-        return individualCustomerRepository.save(new IndividualCustomer(individualCustomerPutRequestDTO));
+
+        // Update customer
+        IndividualCustomer updatedCustomer = individualCustomerRepository.save(new IndividualCustomer(individualCustomerPutRequestDTO));
+
+        // Enqueue the updated customer to the service queue
+        individualCustomerQueueService.enqueueCustomer(updatedCustomer);
+
+        return updatedCustomer;
     }
 
     @Override

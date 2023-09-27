@@ -1,6 +1,7 @@
 package com.challenge.customerprospecting.service.impl;
 
 import com.challenge.customerprospecting.dto.LegalEntityCustomerPutRequestDTO;
+import com.challenge.customerprospecting.service.LegalEntityCustomerQueueService;
 import com.challenge.customerprospecting.service.exceptions.LegalEntityCustomerNotFoundException;
 import com.challenge.customerprospecting.service.exceptions.LegalEntityCustomerAlreadyExistsException;
 import com.challenge.customerprospecting.dto.LegalEntityCustomerPostRequestDTO;
@@ -18,6 +19,7 @@ import java.util.List;
 public class LegalEntityCustomerServiceImpl implements LegalEntitycustomerService {
 
     final LegalEntityCustomerRepository legalEntityCustomerRepository;
+    final LegalEntityCustomerQueueService legalEntityCustomerQueueService;
 
 
     @Override
@@ -30,7 +32,13 @@ public class LegalEntityCustomerServiceImpl implements LegalEntitycustomerServic
         // Check if customer cpf already exists in database
         this.checkIfCustomerAlreadyExists(legalEntityCustomerPostRequestDTO.getCnpj());
 
-        return legalEntityCustomerRepository.save(new LegalEntityCustomer(legalEntityCustomerPostRequestDTO));
+        // Save customer
+        LegalEntityCustomer savedCustomer = legalEntityCustomerRepository.save(new LegalEntityCustomer(legalEntityCustomerPostRequestDTO));
+
+        // Enqueue the saved customer to the service queue
+        legalEntityCustomerQueueService.enqueueCustomer(savedCustomer);
+
+        return savedCustomer;
     }
 
     @Override
@@ -41,7 +49,14 @@ public class LegalEntityCustomerServiceImpl implements LegalEntitycustomerServic
     @Override
     public LegalEntityCustomer update(LegalEntityCustomerPutRequestDTO legalEntityCustomerPutRequestDTO, Long id) {
         this.findById(id);
-        return legalEntityCustomerRepository.save(new LegalEntityCustomer(legalEntityCustomerPutRequestDTO));
+
+        // Update customer
+        LegalEntityCustomer updatedCustomer = legalEntityCustomerRepository.save(new LegalEntityCustomer(legalEntityCustomerPutRequestDTO));
+
+        // Enqueue the updated customer to the service queue
+        legalEntityCustomerQueueService.enqueueCustomer(updatedCustomer);
+
+        return updatedCustomer;
     }
 
     @Override
