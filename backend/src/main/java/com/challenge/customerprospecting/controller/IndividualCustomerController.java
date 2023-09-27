@@ -12,6 +12,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
 @Validated
@@ -20,6 +22,11 @@ import org.springframework.web.bind.annotation.*;
 public class IndividualCustomerController {
 
     private final IndividualCustomerService individualCustomerService;
+
+    @GetMapping
+    public ResponseEntity<List<IndividualCustomer>> findAll() {
+        return ResponseEntity.ok().body(individualCustomerService.findAll());
+    }
 
     @PostMapping
     public ResponseEntity<IndividualCustomer> save(@RequestBody @Valid IndividualCustomerPostRequestDTO individualCustomer) {
