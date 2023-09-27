@@ -1,6 +1,7 @@
 package com.challenge.customerprospecting.entity;
 
 import com.challenge.customerprospecting.dto.IndividualCustomerPostRequestDTO;
+import com.challenge.customerprospecting.dto.IndividualCustomerPutRequestDTO;
 import lombok.Data;
 import jakarta.persistence.*;
 import lombok.RequiredArgsConstructor;
@@ -32,5 +33,13 @@ public class IndividualCustomer {
         this.setMcc(individualCustomerPostRequestDTO.getMcc());
         this.setCpf(individualCustomerPostRequestDTO.getCpf());
         this.setEmail(individualCustomerPostRequestDTO.getEmail());
+    }
+
+    public IndividualCustomer(IndividualCustomerPutRequestDTO individualCustomerPutRequestDTO) {
+        this.setId(individualCustomerPutRequestDTO.getId());
+        this.setName(individualCustomerPutRequestDTO.getName());
+        this.setMcc(individualCustomerPutRequestDTO.getMcc());
+        this.setCpf(individualCustomerPutRequestDTO.getCpf());
+        this.setEmail(individualCustomerPutRequestDTO.getEmail());
     }
 }
