@@ -4,6 +4,7 @@ package com.challenge.customerprospecting.controller;
 import com.challenge.customerprospecting.dto.IndividualCustomerPostRequestDTO;
 import com.challenge.customerprospecting.dto.IndividualCustomerPutRequestDTO;
 import com.challenge.customerprospecting.entity.IndividualCustomer;
+import com.challenge.customerprospecting.service.IndividualCustomerQueueService;
 import com.challenge.customerprospecting.service.IndividualCustomerService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +23,7 @@ import java.util.List;
 public class IndividualCustomerController {
 
     private final IndividualCustomerService individualCustomerService;
+    private final IndividualCustomerQueueService individualCustomerQueueService;
 
     @GetMapping
     public ResponseEntity<List<IndividualCustomer>> findAll() {
@@ -46,5 +48,18 @@ public class IndividualCustomerController {
     @DeleteMapping(value = "/{id}")
     public void delete(@PathVariable Long id) {
         individualCustomerService.delete(id);
+    }
+
+    @GetMapping("/next")
+    public ResponseEntity<IndividualCustomer> getNextCustomer() {
+        // Dequeue the next customer from the service queue
+        IndividualCustomer nextCustomer = individualCustomerQueueService.dequeueCustomer();
+        if (nextCustomer == null) {
+            // If there is no customer in the queue, return a 204 No Content status
+            return ResponseEntity.noContent().build();
+        } else {
+            // If there is a customer in the queue, return a 200 OK status and the customer in the body
+            return ResponseEntity.ok(nextCustomer);
+        }
     }
 }
