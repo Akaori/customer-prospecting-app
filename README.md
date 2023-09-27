@@ -40,4 +40,4 @@ http://localhost:8080/h2-console
 ## Testes automatizados
 
 - Testes unitários para os serviços
-- CI com Github Actions
+- CI com [Github Actions](https://github.com/Akaori/customer-prospecting-app/actions)
