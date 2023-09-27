@@ -8,6 +8,8 @@ import java.util.List;
 
 public interface IndividualCustomerService {
 
+    List<IndividualCustomer> findAll();
+
     IndividualCustomer save(IndividualCustomerPostRequestDTO individualCustomerPostRequestDTO);
 
     IndividualCustomer findById(Long id);

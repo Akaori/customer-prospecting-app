@@ -17,6 +17,12 @@ import org.springframework.stereotype.Service;
 public class IndividualCustomerServiceImpl implements IndividualCustomerService {
 
     final IndividualCustomerRepository individualCustomerRepository;
+
+    @Override
+    public List<IndividualCustomer> findAll() {
+        return individualCustomerRepository.findAll();
+    }
+
     @Override
     public IndividualCustomer save(IndividualCustomerPostRequestDTO individualCustomerPostRequestDTO) {
         // Check if customer cpf already exists in database

@@ -21,6 +21,11 @@ public class LegalEntityCustomerServiceImpl implements LegalEntitycustomerServic
 
 
     @Override
+    public List<LegalEntityCustomer> findAll() {
+        return legalEntityCustomerRepository.findAll();
+    }
+
+    @Override
     public LegalEntityCustomer save(LegalEntityCustomerPostRequestDTO legalEntityCustomerPostRequestDTO) {
         // Check if customer cpf already exists in database
         this.checkIfCustomerAlreadyExists(legalEntityCustomerPostRequestDTO.getCnpj());
