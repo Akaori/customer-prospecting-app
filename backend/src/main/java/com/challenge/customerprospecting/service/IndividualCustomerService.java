@@ -14,5 +14,5 @@ public interface IndividualCustomerService {
 
     IndividualCustomer update(IndividualCustomerPutRequestDTO individualCustomerPutRequestDTO, Long id);
 
-
+    void delete(Long id);
 }

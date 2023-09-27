@@ -39,6 +39,12 @@ public class LegalEntityCustomerServiceImpl implements LegalEntitycustomerServic
         return legalEntityCustomerRepository.save(new LegalEntityCustomer(legalEntityCustomerPutRequestDTO));
     }
 
+    @Override
+    public void delete(Long id) {
+        this.findById(id);
+        legalEntityCustomerRepository.deleteById(id);
+    }
+
 
     public void checkIfCustomerAlreadyExists(String cnpj) {
         List<LegalEntityCustomer> existentCustomer = legalEntityCustomerRepository.findByCnpj(cnpj);
