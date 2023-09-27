@@ -4,7 +4,6 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import { Routes, Route } from "react-router-dom";
 import Topbar from "./scenes/global/Topbar";
 import Sidebar from "./scenes/global/Sidebar";
-import Home from "./scenes/home";
 // import AddLegalEntityCustomerForm from "./scenes/addlegalentitycustomerform";
 // import AddIndividualCustomerForm from "./scenes/addindividualcustomerform";
 // import EditLegalEntityCustomerForm from "./scenes/editlegalentitycustomerform";
@@ -28,10 +27,6 @@ function App() {
             <Topbar />
 
             <Routes>
-              <Route
-                path="/"
-                element={<Home />}
-              />
               {/* <Route
               path="/legal-entity-customer/add-customer-form"
               element={<AddLegalEntityCustomerForm />}
