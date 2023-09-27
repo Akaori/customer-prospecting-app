@@ -34,4 +34,9 @@ public class LegalEntityCustomerController {
     public ResponseEntity<LegalEntityCustomer> update(@PathVariable Long id, @RequestBody LegalEntityCustomerPutRequestDTO legalEntityCustomerPutRequestDTO) {
         return ResponseEntity.ok(legalEntitycustomerService.update(legalEntityCustomerPutRequestDTO, id));
     }
+
+    @DeleteMapping(value = "/{id}")
+    public void delete(@PathVariable Long id) {
+        legalEntitycustomerService.delete(id);
+    }
 }

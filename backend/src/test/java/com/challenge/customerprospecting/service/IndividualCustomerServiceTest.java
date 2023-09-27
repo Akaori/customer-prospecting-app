@@ -165,4 +165,29 @@ public class IndividualCustomerServiceTest {
         // Verify that the repository method was called once
         verify(individualCustomerRepository, times(1)).save(entity);
     }
+
+    @Test
+    public void testDelete() {
+        // Create an id value to test with
+        Long id = 3L;
+
+        // Create an entity object with some sample data and the id value
+        IndividualCustomer entity = new IndividualCustomer();
+        entity.setId(id);
+        entity.setName("John Doe");
+        entity.setMcc("1234");
+        entity.setCpf("11111111111");
+        entity.setEmail("john.doe@example.com");
+
+        when(individualCustomerRepository.findById(id)).thenReturn(Optional.of(entity));
+
+        // Stub the repository method to do nothing when deleting by id
+        doNothing().when(individualCustomerRepository).deleteById(id);
+
+        // Call the service method with the id and assert that it does not throw an exception
+        assertDoesNotThrow(() -> individualCustomerService.delete(id));
+
+        // Verify that the repository method was called once
+        verify(individualCustomerRepository, times(1)).deleteById(id);
+    }
 }

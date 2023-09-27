@@ -35,4 +35,9 @@ public class IndividualCustomerController {
     public ResponseEntity<IndividualCustomer> update(@PathVariable Long id, @RequestBody IndividualCustomerPutRequestDTO individualCustomerPutRequestDTO) {
         return ResponseEntity.ok(individualCustomerService.update(individualCustomerPutRequestDTO, id));
     }
+
+    @DeleteMapping(value = "/{id}")
+    public void delete(@PathVariable Long id) {
+        individualCustomerService.delete(id);
+    }
 }

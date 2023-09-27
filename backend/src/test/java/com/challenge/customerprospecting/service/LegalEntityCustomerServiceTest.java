@@ -173,4 +173,31 @@ public class LegalEntityCustomerServiceTest {
         // Verify that the repository method was called once
         verify(legalEntityCustomerRepository, times(1)).save(entity);
     }
+
+    @Test
+    public void testDelete() {
+        // Create an id value to test with
+        Long id = 1L;
+
+        // Create an entity object with some sample data and the id value
+        LegalEntityCustomer entity = new LegalEntityCustomer();
+        entity.setId(id);
+        entity.setCorporateName("ABC Inc.");
+        entity.setCnpj("12345678901234");
+        entity.setMcc("0000");
+        entity.setContactName("Teste");
+        entity.setContactCpf("11111111111");
+        entity.setEmail("abc@example.com");
+
+        when(legalEntityCustomerRepository.findById(id)).thenReturn(Optional.of(entity));
+
+        // Stub the repository method to do nothing when deleting by id
+        doNothing().when(legalEntityCustomerRepository).deleteById(id);
+
+        // Call the service method with the id and assert that it does not throw an exception
+        assertDoesNotThrow(() -> legalEntityCustomerService.delete(id));
+
+        // Verify that the repository method was called once
+        verify(legalEntityCustomerRepository, times(1)).deleteById(id);
+    }
 }

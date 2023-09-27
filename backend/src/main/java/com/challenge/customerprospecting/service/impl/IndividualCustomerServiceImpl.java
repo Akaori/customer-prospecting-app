@@ -36,6 +36,12 @@ public class IndividualCustomerServiceImpl implements IndividualCustomerService 
         return individualCustomerRepository.save(new IndividualCustomer(individualCustomerPutRequestDTO));
     }
 
+    @Override
+    public void delete(Long id) {
+        this.findById(id);
+        individualCustomerRepository.deleteById(id);
+    }
+
     public void checkIfCustomerAlreadyExists(String cpf) {
         List<IndividualCustomer> existentCustomer = individualCustomerRepository.findByCpf(cpf);
         if (existentCustomer.size() > 0) {
