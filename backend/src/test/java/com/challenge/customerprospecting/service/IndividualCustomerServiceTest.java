@@ -8,7 +8,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import static org.junit.jupiter.api.Assertions.*;
 
-
+import java.util.Optional;
 import java.util.Collections;
 import static org.mockito.Mockito.*;
 
@@ -16,6 +16,8 @@ import com.challenge.customerprospecting.repository.IndividualCustomerRepository
 import com.challenge.customerprospecting.service.impl.IndividualCustomerServiceImpl;
 import com.challenge.customerprospecting.dto.IndividualCustomerPostRequestDTO;
 import com.challenge.customerprospecting.entity.IndividualCustomer;
+import com.challenge.customerprospecting.service.exceptions.IndividualCustomerNotFoundException;
+import com.challenge.customerprospecting.dto.IndividualCustomerPutRequestDTO;
 
 @ExtendWith(MockitoExtension.class)
 public class IndividualCustomerServiceTest {
@@ -90,5 +92,77 @@ public class IndividualCustomerServiceTest {
 
         // Verify that the repository method was called once
         verify(individualCustomerRepository, times(1)).findByCpf(cpf);
+    }
+
+    @Test
+    public void testFindById() {
+        // Create an id value to test with
+        Long id = 1L;
+
+        // Create an entity object with some sample data and the id value
+        IndividualCustomer entity = new IndividualCustomer();
+        entity.setId(id);
+        entity.setName("John Doe");
+        entity.setMcc("1234");
+        entity.setCpf("11111111111");
+        entity.setEmail("john.doe@example.com");
+
+        // Stub the repository method to return an optional with the entity when finding by id
+        when(individualCustomerRepository.findById(id)).thenReturn(Optional.of(entity));
+
+        // Call the service method with the id and assert that it returns the entity
+        IndividualCustomer result = individualCustomerService.findById(id);
+        assertEquals(entity, result);
+
+        // Verify that the repository method was called once
+        verify(individualCustomerRepository, times(1)).findById(id);
+    }
+
+    // Write a test for the findById method when it throws an exception
+    @Test
+    public void testFindByIdThrowsException() {
+        // Create an id value to test with
+        Long id = 2L;
+
+        // Stub the repository method to return an empty optional when finding by id
+        when(individualCustomerRepository.findById(id)).thenReturn(Optional.empty());
+
+        // Call the service method with the id and assert that it throws an exception of the expected type and message
+        assertThrows(IndividualCustomerNotFoundException.class, () -> individualCustomerService.findById(id), "Customer with id " + id  + " not found");
+
+        // Verify that the repository method was called once
+        verify(individualCustomerRepository, times(1)).findById(id);
+    }
+
+    @Test
+    public void testUpdate() {
+        // Create an id value to test with
+        Long id = 3L;
+
+        // Create a DTO object with some sample data
+        IndividualCustomerPutRequestDTO dto = new IndividualCustomerPutRequestDTO().builder()
+                .id(id)
+                .name("Jane Doe")
+                .mcc("0000")
+                .cpf("22222222222")
+                .email("jane.doe@example.com")
+                .build();
+
+        // Create an entity object with the same data and the id value
+        IndividualCustomer entity = new IndividualCustomer(dto);
+        entity.setId(id);
+
+        // Stub the repository method to return the entity when saving
+        when(individualCustomerRepository.save(entity)).thenReturn(entity);
+
+        // Stub the service method to return the entity when finding by id
+        when(individualCustomerRepository.findById(id)).thenReturn(Optional.of(entity));
+
+        // Call the service method with the DTO and the id and assert that it returns the entity
+        IndividualCustomer result = individualCustomerService.update(dto, id);
+        assertEquals(entity, result);
+
+        // Verify that the repository method was called once
+        verify(individualCustomerRepository, times(1)).save(entity);
     }
 }
