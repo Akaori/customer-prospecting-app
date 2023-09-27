@@ -18,8 +18,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class LegalEntityCustomerServiceImpl implements LegalEntitycustomerService {
 
-    final LegalEntityCustomerRepository legalEntityCustomerRepository;
-    final LegalEntityCustomerQueueService legalEntityCustomerQueueService;
+    private final LegalEntityCustomerRepository legalEntityCustomerRepository;
+    private final LegalEntityCustomerQueueService legalEntityCustomerQueueService;
 
 
     @Override

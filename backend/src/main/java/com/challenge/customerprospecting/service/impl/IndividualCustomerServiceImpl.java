@@ -17,8 +17,8 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class IndividualCustomerServiceImpl implements IndividualCustomerService {
 
-    final IndividualCustomerRepository individualCustomerRepository;
-    final IndividualCustomerQueueService individualCustomerQueueService;
+    private final IndividualCustomerRepository individualCustomerRepository;
+    private final IndividualCustomerQueueService individualCustomerQueueService;
 
     @Override
     public List<IndividualCustomer> findAll() {
