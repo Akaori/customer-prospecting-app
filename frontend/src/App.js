@@ -4,11 +4,11 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import { Routes, Route } from "react-router-dom";
 import Topbar from "./scenes/global/Topbar";
 import Sidebar from "./scenes/global/Sidebar";
+import LegalEntityCustomerList from "./scenes/legalentitycustomerlist";
 // import AddLegalEntityCustomerForm from "./scenes/addlegalentitycustomerform";
 // import AddIndividualCustomerForm from "./scenes/addindividualcustomerform";
 // import EditLegalEntityCustomerForm from "./scenes/editlegalentitycustomerform";
 // import EditIndividualCustomerForm from "./scenes/editindividualcustomerform";
-// import LegalEntityCustomerList from "./scenes/legalentitycustomerlist";
 // import IndividualCustomerList from "./scenes/individualcustomerlist";
 // import ProspectLegalEntityCustomer from "./scenes/prospectlegalentitycustomer";
 // import ProspectIndividualCustomer from "./scenes/prospectindividualcustomer";
@@ -27,6 +27,10 @@ function App() {
             <Topbar />
 
             <Routes>
+              <Route
+                path="/legal-entity-customer/list"
+                element={<LegalEntityCustomerList />}
+              />
               {/* <Route
               path="/legal-entity-customer/add-customer-form"
               element={<AddLegalEntityCustomerForm />}
@@ -35,10 +39,7 @@ function App() {
               path="/legal-entity-customer/update-customer-form"
               element={<EditLegalEntityCustomerForm />}
             /> */}
-              {/* <Route
-              path="/legal-entity-customer/list"
-              element={<LegalEntityCustomerList />}
-            /> */}
+
               {/* <Route
               path="/legal-entity-customer/prospect"
               element={<ProspectLegalEntityCustomer />}
