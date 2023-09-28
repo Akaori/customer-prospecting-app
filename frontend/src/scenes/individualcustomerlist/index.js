@@ -69,7 +69,7 @@ const IndividualCustomerList = () => {
   return (
     <Box m="20px">
       <Header
-        title="Pessoa Jurídica"
+        title="Pessoa Física"
         subtitle="Lista de clientes"
       />
       <Box
