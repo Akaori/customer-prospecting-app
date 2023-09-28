@@ -32,7 +32,7 @@ const Sidebar = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const [selected, setSelected] = useState("/legal-entity-customer/list");
+  const [selected, setSelected] = useState("/pessoa-juridica/clientes");
 
   return (
     <Box
@@ -92,7 +92,7 @@ const Sidebar = () => {
             </Typography>
             <Item
               title="Clientes Cadastrados"
-              to="/legal-entity-customer/list"
+              to="/pessoa-juridica/clientes"
               icon={<ReceiptOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}

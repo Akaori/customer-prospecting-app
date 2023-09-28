@@ -28,7 +28,7 @@ function App() {
 
             <Routes>
               <Route
-                path="/legal-entity-customer/list"
+                path="/pessoa-juridica/clientes"
                 element={<LegalEntityCustomerList />}
               />
               {/* <Route
