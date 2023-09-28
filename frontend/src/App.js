@@ -10,7 +10,7 @@ import AddIndividualCustomerForm from "./scenes/addindividualcustomerform";
 import EditLegalEntityCustomerForm from "./scenes/editlegalentitycustomerform";
 import EditIndividualCustomerForm from "./scenes/editindividualcustomerform";
 import IndividualCustomerList from "./scenes/individualcustomerlist";
-// import ProspectLegalEntityCustomer from "./scenes/prospectlegalentitycustomer";
+import ProspectLegalEntityCustomer from "./scenes/prospectlegalentitycustomer";
 // import ProspectIndividualCustomer from "./scenes/prospectindividualcustomer";
 
 function App() {
@@ -39,11 +39,10 @@ function App() {
                 path="/pessoa-juridica/clientes/:id"
                 element={<EditLegalEntityCustomerForm />}
               />
-
-              {/* <Route
-              path="/legal-entity-customer/prospect"
-              element={<ProspectLegalEntityCustomer />}
-            /> */}
+              <Route
+                path="/pessoa-juridica/prospectar"
+                element={<ProspectLegalEntityCustomer />}
+              />
               <Route
                 path="/pessoa-fisica/clientes"
                 element={<IndividualCustomerList />}

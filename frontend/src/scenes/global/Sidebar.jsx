@@ -106,7 +106,7 @@ const Sidebar = () => {
             />
             <Item
               title="Prospecção"
-              to="/legal-entity-customer/prospect"
+              to="/pessoa-juridica/prospectar"
               icon={<TimelineOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
