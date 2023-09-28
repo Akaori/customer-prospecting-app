@@ -105,13 +105,6 @@ const Sidebar = () => {
               setSelected={setSelected}
             />
             <Item
-              title="Editar cadastro"
-              to="/pessoa-juridica/clientes/:id"
-              icon={<ContactsOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
               title="Prospecção"
               to="/legal-entity-customer/prospect"
               icon={<TimelineOutlinedIcon />}
@@ -137,13 +130,6 @@ const Sidebar = () => {
               title="Novo Cadastro"
               to="/pessoa-fisica/cadastro"
               icon={<PeopleOutlinedIcon />}
-              selected={selected}
-              setSelected={setSelected}
-            />
-            <Item
-              title="Editar cadastro"
-              to="/pessoa-fisica/clientes/:id"
-              icon={<ContactsOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
