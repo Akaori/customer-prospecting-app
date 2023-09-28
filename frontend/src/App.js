@@ -9,7 +9,7 @@ import LegalEntityCustomerList from "./scenes/legalentitycustomerlist";
 // import AddIndividualCustomerForm from "./scenes/addindividualcustomerform";
 // import EditLegalEntityCustomerForm from "./scenes/editlegalentitycustomerform";
 // import EditIndividualCustomerForm from "./scenes/editindividualcustomerform";
-// import IndividualCustomerList from "./scenes/individualcustomerlist";
+import IndividualCustomerList from "./scenes/individualcustomerlist";
 // import ProspectLegalEntityCustomer from "./scenes/prospectlegalentitycustomer";
 // import ProspectIndividualCustomer from "./scenes/prospectindividualcustomer";
 
@@ -44,6 +44,10 @@ function App() {
               path="/legal-entity-customer/prospect"
               element={<ProspectLegalEntityCustomer />}
             /> */}
+              <Route
+                path="/pessoa-fisica/clientes"
+                element={<IndividualCustomerList />}
+              />
               {/* <Route
               path="/individual-customer/add-customer-form"
               element={<AddIndividualCustomerForm />}
@@ -52,10 +56,7 @@ function App() {
               path="/individual-customer/update-customer-form"
               element={<EditIndividualCustomerForm />}
             /> */}
-              {/* <Route
-              path="/individual-customer/list"
-              element={<IndividualCustomerList />}
-            /> */}
+
               {/* <Route
               path="/individual-customer/prospect"
               element={<ProspectIndividualCustomer />}

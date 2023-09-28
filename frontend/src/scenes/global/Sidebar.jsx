@@ -128,7 +128,7 @@ const Sidebar = () => {
             </Typography>
             <Item
               title="Clientes Cadastrados"
-              to="/individual-customer/list"
+              to="/pessoa-fisica/clientes"
               icon={<ReceiptOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
