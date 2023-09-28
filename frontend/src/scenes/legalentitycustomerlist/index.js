@@ -52,7 +52,7 @@ const LegalEntityCustomerList = () => {
     { field: "email", headerName: "Email", flex: 1 },
     {
       field: "actions",
-      headerName: "Actions",
+      headerName: "Ações",
       flex: 1,
       renderCell: (params) => {
         return (
@@ -61,7 +61,7 @@ const LegalEntityCustomerList = () => {
             onClick={(e) => deleteCustomer(e, params.row)}
             variant="contained"
           >
-            Delete
+            Deletar
           </Button>
         );
       },
