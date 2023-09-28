@@ -11,7 +11,7 @@ import EditLegalEntityCustomerForm from "./scenes/editlegalentitycustomerform";
 import EditIndividualCustomerForm from "./scenes/editindividualcustomerform";
 import IndividualCustomerList from "./scenes/individualcustomerlist";
 import ProspectLegalEntityCustomer from "./scenes/prospectlegalentitycustomer";
-// import ProspectIndividualCustomer from "./scenes/prospectindividualcustomer";
+import ProspectIndividualCustomer from "./scenes/prospectindividualcustomer";
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -55,11 +55,10 @@ function App() {
                 path="/pessoa-fisica/clientes/:id"
                 element={<EditIndividualCustomerForm />}
               />
-
-              {/* <Route
-              path="/individual-customer/prospect"
-              element={<ProspectIndividualCustomer />}
-            /> */}
+              <Route
+                path="/pessoa-fisica/prospectar"
+                element={<ProspectIndividualCustomer />}
+              />
             </Routes>
           </main>
         </div>
