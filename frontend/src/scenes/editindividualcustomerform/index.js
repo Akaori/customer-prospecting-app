@@ -41,18 +41,24 @@ const EditIndividualCustomerForm = () => {
   }, []);
 
   const validations = yup.object().shape({
-    name: yup.string().required("required").max(50, "Máximo de 50 caracteres"),
+    name: yup
+      .string()
+      .required("Campo obrigatório")
+      .max(50, "Máximo de 50 caracteres"),
     mcc: yup
       .string()
-      .required("required")
+      .required("Campo obrigatório")
       .min(4, "Precisa ter 4 digitos")
       .max(4, "Precisa ter 4 digitos"),
     cpf: yup
       .string()
-      .required("required")
+      .required("Campo obrigatório")
       .min(11, "Precisa ter 11 digitos")
       .max(11, "Precisa ter 11 digitos"),
-    email: yup.string().email("Email não é válido").required("required"),
+    email: yup
+      .string()
+      .email("Email não é válido")
+      .required("Campo obrigatório"),
   });
 
   const updateCustomer = (values) => {
