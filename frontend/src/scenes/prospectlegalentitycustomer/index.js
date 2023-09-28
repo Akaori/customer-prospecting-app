@@ -28,6 +28,16 @@ const ProspectLegalEntityCustomer = () => {
       });
   };
 
+  function isEmpty(obj) {
+    for (const prop in obj) {
+      if (Object.hasOwn(obj, prop)) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
   return (
     <Box m="20px">
       <Header
@@ -59,50 +69,62 @@ const ProspectLegalEntityCustomer = () => {
             }}
           >
             <CardContent>
-              <Typography
-                sx={{ fontSize: 14 }}
-                color="text.secondary"
-                gutterBottom
-              >
-                Pessoa Jurídica
-              </Typography>
-              <Typography
-                vsx={{ mb: 2.0 }}
-                component="div"
-              >
-                {customer.corporateName}
-              </Typography>
-              <Typography
-                sx={{ mb: 2.0 }}
-                component="div"
-                color="text.secondary"
-              >
-                CNPJ: {customer.cnpj}
-              </Typography>
-              <Typography
-                sx={{ mb: 2.0 }}
-                color="text.secondary"
-              >
-                MCC: {customer.mcc}
-              </Typography>
-              <Typography
-                sx={{ mb: 2.0 }}
-                color="text.secondary"
-              >
-                Nome para contato: {customer.contactName}
-              </Typography>
-              <Typography
-                sx={{ mb: 2.0 }}
-                color="text.secondary"
-              >
-                CPF do contato: {customer.contactCpf}
-              </Typography>
-              <Typography
-                sx={{ mb: 2.0 }}
-                color="text.secondary"
-              >
-                {customer.email}
-              </Typography>
+              {!isEmpty(customer) && (
+                <div>
+                  <Typography
+                    sx={{ fontSize: 14 }}
+                    color="text.secondary"
+                    gutterBottom
+                  >
+                    Pessoa Jurídica
+                  </Typography>
+                  <Typography
+                    sx={{ fontSize: 24, mb: 2.0 }}
+                    component="div"
+                  >
+                    {customer.corporateName}
+                  </Typography>
+                  <Typography
+                    sx={{ mb: 2.0, fontSize: 20 }}
+                    component="div"
+                    color="text.secondary"
+                  >
+                    CNPJ: {customer.cnpj}
+                  </Typography>
+                  <Typography
+                    sx={{ mb: 2.0, fontSize: 20 }}
+                    color="text.secondary"
+                  >
+                    MCC: {customer.mcc}
+                  </Typography>
+                  <Typography
+                    sx={{ mb: 2.0, fontSize: 20 }}
+                    color="text.secondary"
+                  >
+                    Nome para contato: {customer.contactName}
+                  </Typography>
+                  <Typography
+                    sx={{ mb: 2.0, fontSize: 20 }}
+                    color="text.secondary"
+                  >
+                    CPF do contato: {customer.contactCpf}
+                  </Typography>
+                  <Typography
+                    sx={{ mb: 2.0, fontSize: 20 }}
+                    color="text.secondary"
+                  >
+                    {customer.email}
+                  </Typography>
+                </div>
+              )}
+              {isEmpty(customer) && (
+                <Typography
+                  sx={{ fontSize: 22, textAlign: "center" }}
+                  color="text.secondary"
+                >
+                  Clique no botão para prospectar um novo cliente.
+                </Typography>
+              )}
             </CardContent>
           </Card>
         </Grid>
