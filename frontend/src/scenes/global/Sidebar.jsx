@@ -99,7 +99,7 @@ const Sidebar = () => {
             />
             <Item
               title="Novo Cadastro"
-              to="/legal-entity-customer/add-customer-form"
+              to="/pessoa-juridica/cadastro"
               icon={<PeopleOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}

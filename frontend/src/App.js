@@ -5,7 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import Topbar from "./scenes/global/Topbar";
 import Sidebar from "./scenes/global/Sidebar";
 import LegalEntityCustomerList from "./scenes/legalentitycustomerlist";
-// import AddLegalEntityCustomerForm from "./scenes/addlegalentitycustomerform";
+import AddLegalEntityCustomerForm from "./scenes/addlegalentitycustomerform";
 // import AddIndividualCustomerForm from "./scenes/addindividualcustomerform";
 // import EditLegalEntityCustomerForm from "./scenes/editlegalentitycustomerform";
 // import EditIndividualCustomerForm from "./scenes/editindividualcustomerform";
@@ -31,10 +31,10 @@ function App() {
                 path="/pessoa-juridica/clientes"
                 element={<LegalEntityCustomerList />}
               />
-              {/* <Route
-              path="/legal-entity-customer/add-customer-form"
-              element={<AddLegalEntityCustomerForm />}
-            /> */}
+              <Route
+                path="/pessoa-juridica/cadastro"
+                element={<AddLegalEntityCustomerForm />}
+              />
               {/* <Route
               path="/legal-entity-customer/update-customer-form"
               element={<EditLegalEntityCustomerForm />}
