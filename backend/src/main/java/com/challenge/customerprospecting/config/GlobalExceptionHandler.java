@@ -2,6 +2,9 @@ package com.challenge.customerprospecting.config;
 
 
 import com.challenge.customerprospecting.service.exceptions.IndividualCustomerAlreadyExistsException;
+import com.challenge.customerprospecting.service.exceptions.IndividualCustomerNotFoundException;
+import com.challenge.customerprospecting.service.exceptions.LegalEntityCustomerAlreadyExistsException;
+import com.challenge.customerprospecting.service.exceptions.LegalEntityCustomerNotFoundException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,9 +30,27 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(IndividualCustomerAlreadyExistsException.class)
-    public ResponseEntity<Map<String, List<String>>> handleAlreadyExistsException(IndividualCustomerAlreadyExistsException ex) {
+    public ResponseEntity<Map<String, List<String>>> handleIndividualCustomerNotFoundException(IndividualCustomerAlreadyExistsException ex) {
         List<String> errors = Collections.singletonList(ex.getMessage());
         return new ResponseEntity<>(getErrorsMap(errors), new HttpHeaders(), HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(IndividualCustomerNotFoundException.class)
+    public ResponseEntity<Map<String, List<String>>> handleIndividualCustomerNotFoundException(IndividualCustomerNotFoundException ex) {
+        List<String> errors = Collections.singletonList(ex.getMessage());
+        return new ResponseEntity<>(getErrorsMap(errors), new HttpHeaders(), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(LegalEntityCustomerAlreadyExistsException.class)
+    public ResponseEntity<Map<String, List<String>>> handleLegalEntityCustomerAlreadyExistsException(LegalEntityCustomerAlreadyExistsException ex) {
+        List<String> errors = Collections.singletonList(ex.getMessage());
+        return new ResponseEntity<>(getErrorsMap(errors), new HttpHeaders(), HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(LegalEntityCustomerNotFoundException.class)
+    public ResponseEntity<Map<String, List<String>>> handleLegalEntityCustomerNotFoundException(LegalEntityCustomerNotFoundException ex) {
+        List<String> errors = Collections.singletonList(ex.getMessage());
+        return new ResponseEntity<>(getErrorsMap(errors), new HttpHeaders(), HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(Exception.class)
