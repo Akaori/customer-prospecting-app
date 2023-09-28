@@ -106,7 +106,7 @@ const Sidebar = () => {
             />
             <Item
               title="Editar cadastro"
-              to="/legal-entity-customer/update-customer-form"
+              to="/pessoa-juridica/clientes/:id"
               icon={<ContactsOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}

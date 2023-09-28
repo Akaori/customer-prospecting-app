@@ -7,7 +7,7 @@ import Sidebar from "./scenes/global/Sidebar";
 import LegalEntityCustomerList from "./scenes/legalentitycustomerlist";
 import AddLegalEntityCustomerForm from "./scenes/addlegalentitycustomerform";
 import AddIndividualCustomerForm from "./scenes/addindividualcustomerform";
-// import EditLegalEntityCustomerForm from "./scenes/editlegalentitycustomerform";
+import EditLegalEntityCustomerForm from "./scenes/editlegalentitycustomerform";
 // import EditIndividualCustomerForm from "./scenes/editindividualcustomerform";
 import IndividualCustomerList from "./scenes/individualcustomerlist";
 // import ProspectLegalEntityCustomer from "./scenes/prospectlegalentitycustomer";
@@ -35,10 +35,10 @@ function App() {
                 path="/pessoa-juridica/cadastro"
                 element={<AddLegalEntityCustomerForm />}
               />
-              {/* <Route
-              path="/legal-entity-customer/update-customer-form"
-              element={<EditLegalEntityCustomerForm />}
-            /> */}
+              <Route
+                path="/pessoa-juridica/clientes/:id"
+                element={<EditLegalEntityCustomerForm />}
+              />
 
               {/* <Route
               path="/legal-entity-customer/prospect"
