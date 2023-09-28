@@ -1,16 +1,30 @@
 import { Box, Button, TextField } from "@mui/material";
+import MuiAlert from "@mui/material/Alert";
+import Snackbar from "@mui/material/Snackbar";
 import { Formik } from "formik";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState, forwardRef } from "react";
 import { useParams } from "react-router-dom";
 import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/Header";
 import axios from "axios";
 
+const Alert = forwardRef(function Alert(props, ref) {
+  return (
+    <MuiAlert
+      elevation={6}
+      ref={ref}
+      variant="filled"
+      {...props}
+    />
+  );
+});
+
 const EditIndividualCustomerForm = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const { id } = useParams();
   const formikRef = useRef();
+  const [open, setOpen] = useState(false);
 
   const initialValues = {
     name: "",
@@ -33,6 +47,14 @@ const EditIndividualCustomerForm = () => {
         }
         // TO DO - if status not 200, show error alert
       });
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
   };
 
   useEffect(() => {
@@ -72,7 +94,9 @@ const EditIndividualCustomerForm = () => {
         },
       })
       .then((response) => {
-        // TO DO - if status 201 show snackbar that was succesful
+        if (response.status === 200) {
+          setOpen(true);
+        }
         // TO DO - if status not 201, show error alert
         // TO DO - reset values
       });
@@ -177,6 +201,20 @@ const EditIndividualCustomerForm = () => {
           </form>
         )}
       </Formik>
+      <Snackbar
+        open={open}
+        autoHideDuration={6000}
+        onClose={handleClose}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+      >
+        <Alert
+          onClose={handleClose}
+          severity="success"
+          sx={{ width: "100%" }}
+        >
+          Cliente atualizado com sucesso!
+        </Alert>
+      </Snackbar>
     </Box>
   );
 };

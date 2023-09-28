@@ -61,7 +61,6 @@ const AddIndividualCustomerForm = () => {
         },
       })
       .then((response) => {
-        // TO DO - if status 201 show snackbar that was succesful
         if (response.status === 201) {
           setOpen(true);
         }
