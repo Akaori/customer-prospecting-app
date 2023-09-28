@@ -44,14 +44,14 @@ const IndividualCustomerList = () => {
 
   const columns = [
     { field: "id", headerName: "ID" },
-    { field: "name", headerName: "Nome", minWidth: 200 },
+    { field: "name", headerName: "Nome", flex: 1 },
     { field: "mcc", headerName: "MCC" },
-    { field: "cpf", headerName: "CPF", minWidth: 200 },
-    { field: "email", headerName: "Email", minWidth: 200 },
+    { field: "cpf", headerName: "CPF", flex: 1 },
+    { field: "email", headerName: "Email", flex: 1 },
     {
       field: "actions",
       headerName: "Actions",
-      width: 400,
+      flex: 1,
       renderCell: (params) => {
         return (
           <Button

@@ -44,16 +44,16 @@ const LegalEntityCustomerList = () => {
 
   const columns = [
     { field: "id", headerName: "ID" },
-    { field: "corporateName", headerName: "Razão Social", minWidth: 200 },
-    { field: "cnpj", headerName: "CNPJ", minWidth: 200 },
+    { field: "corporateName", headerName: "Razão Social", flex: 1 },
+    { field: "cnpj", headerName: "CNPJ", flex: 1 },
     { field: "mcc", headerName: "MCC" },
-    { field: "contactName", headerName: "Nome Contato", minWidth: 200 },
-    { field: "contactCpf", headerName: "CPF Contato", minWidth: 200 },
-    { field: "email", headerName: "Email", minWidth: 200 },
+    { field: "contactName", headerName: "Nome Contato", flex: 1 },
+    { field: "contactCpf", headerName: "CPF Contato", flex: 1 },
+    { field: "email", headerName: "Email", flex: 1 },
     {
       field: "actions",
       headerName: "Actions",
-      width: 400,
+      flex: 1,
       renderCell: (params) => {
         return (
           <Button
