@@ -1,30 +1,27 @@
 import { Box, Button, TextField } from "@mui/material";
-import MuiAlert from "@mui/material/Alert";
-import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
 import { Formik } from "formik";
-import { useEffect, useRef, useState, forwardRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/Header";
 import axios from "axios";
 
-const Alert = forwardRef(function Alert(props, ref) {
-  return (
-    <MuiAlert
-      elevation={6}
-      ref={ref}
-      variant="filled"
-      {...props}
-    />
-  );
-});
-
 const EditIndividualCustomerForm = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const { id } = useParams();
   const formikRef = useRef();
+  const [alert, setAlert] = useState({ message: "", severity: "" });
   const [open, setOpen] = useState(false);
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
 
   const initialValues = {
     name: "",
@@ -44,17 +41,21 @@ const EditIndividualCustomerForm = () => {
       .then((response) => {
         if (response.status === 200) {
           formikRef.current.setValues(response.data);
+        } else {
+          setAlert({
+            message: `Ocorreu um erro inesperado: ${response.status}`,
+            severity: "error",
+          });
+          setOpen(true);
         }
-        // TO DO - if status not 200, show error alert
+      })
+      .catch((err) => {
+        setAlert({
+          message: `Ocorreu um erro inesperado: ${err}`,
+          severity: "error",
+        });
+        setOpen(true);
       });
-  };
-
-  const handleClose = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
-
-    setOpen(false);
   };
 
   useEffect(() => {
@@ -95,10 +96,35 @@ const EditIndividualCustomerForm = () => {
       })
       .then((response) => {
         if (response.status === 200) {
+          setAlert({
+            message: "Cliente atualizado com sucesso",
+            severity: "success",
+          });
+          setOpen(true);
+        } else {
+          setAlert({
+            message: `Ocorreu um erro inesperado: ${response.status}`,
+            severity: "error",
+          });
           setOpen(true);
         }
-        // TO DO - if status not 201, show error alert
-        // TO DO - reset values
+      })
+      .catch((err) => {
+        if (err.response) {
+          if (err.response.status === 409) {
+            setAlert({
+              message: `Já há um cliente cadastrado com o CPF informado. Tente com outro CPF.`,
+              severity: "error",
+            });
+            setOpen(true);
+          }
+        } else {
+          setAlert({
+            message: `Ocorreu um erro inesperado: ${err}`,
+            severity: "error",
+          });
+          setOpen(true);
+        }
       });
   };
 
@@ -201,20 +227,15 @@ const EditIndividualCustomerForm = () => {
           </form>
         )}
       </Formik>
-      <Snackbar
-        open={open}
-        autoHideDuration={6000}
-        onClose={handleClose}
-        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-      >
+      {open && (
         <Alert
+          sx={{ mt: 2.0 }}
           onClose={handleClose}
-          severity="success"
-          sx={{ width: "100%" }}
+          severity={alert.severity}
         >
-          Cliente atualizado com sucesso!
+          {alert.message}
         </Alert>
-      </Snackbar>
+      )}
     </Box>
   );
 };
