@@ -51,7 +51,13 @@ const ProspectLegalEntityCustomer = () => {
           >
             Prospectar cliente
           </Button>
-          <Card sx={{ minWidth: 275, backgroundColor: colors.primary[500] }}>
+          <Card
+            sx={{
+              minWidth: 275,
+              backgroundColor: colors.primary[400],
+              mt: 5.0,
+            }}
+          >
             <CardContent>
               <Typography
                 sx={{ fontSize: 14 }}
