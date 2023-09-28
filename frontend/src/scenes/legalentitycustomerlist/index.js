@@ -4,10 +4,13 @@ import { tokens } from "../../theme";
 import Header from "../../components/Header";
 import { DataGrid } from "@mui/x-data-grid";
 import axios from "axios";
+import Stack from "@mui/material/Stack";
+import { useNavigate } from "react-router-dom";
 
 const LegalEntityCustomerList = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const navigate = useNavigate();
   const [customers, setCustomers] = useState([]);
 
   const getCustomers = () => {
@@ -56,13 +59,27 @@ const LegalEntityCustomerList = () => {
       flex: 1,
       renderCell: (params) => {
         return (
-          <Button
-            color="secondary"
-            onClick={(e) => deleteCustomer(e, params.row)}
-            variant="contained"
+          <Stack
+            spacing={1}
+            direction="row"
           >
-            Deletar
-          </Button>
+            <Button
+              color="secondary"
+              onClick={(e) =>
+                navigate(`/pessoa-juridica/clientes/${params.row.id}`)
+              }
+              variant="outlined"
+            >
+              Editar
+            </Button>
+            <Button
+              color="error"
+              onClick={(e) => deleteCustomer(e, params.row)}
+              variant="outlined"
+            >
+              Deletar
+            </Button>
+          </Stack>
         );
       },
     },
