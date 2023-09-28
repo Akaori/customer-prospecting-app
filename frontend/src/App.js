@@ -6,7 +6,7 @@ import Topbar from "./scenes/global/Topbar";
 import Sidebar from "./scenes/global/Sidebar";
 import LegalEntityCustomerList from "./scenes/legalentitycustomerlist";
 import AddLegalEntityCustomerForm from "./scenes/addlegalentitycustomerform";
-// import AddIndividualCustomerForm from "./scenes/addindividualcustomerform";
+import AddIndividualCustomerForm from "./scenes/addindividualcustomerform";
 // import EditLegalEntityCustomerForm from "./scenes/editlegalentitycustomerform";
 // import EditIndividualCustomerForm from "./scenes/editindividualcustomerform";
 import IndividualCustomerList from "./scenes/individualcustomerlist";
@@ -48,10 +48,10 @@ function App() {
                 path="/pessoa-fisica/clientes"
                 element={<IndividualCustomerList />}
               />
-              {/* <Route
-              path="/individual-customer/add-customer-form"
-              element={<AddIndividualCustomerForm />}
-            /> */}
+              <Route
+                path="/pessoa-fisica/cadastro"
+                element={<AddIndividualCustomerForm />}
+              />
               {/* <Route
               path="/individual-customer/update-customer-form"
               element={<EditIndividualCustomerForm />}

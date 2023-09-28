@@ -135,7 +135,7 @@ const Sidebar = () => {
             />
             <Item
               title="Novo Cadastro"
-              to="/individual-customer/add-customer-form"
+              to="/pessoa-fisica/cadastro"
               icon={<PeopleOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
