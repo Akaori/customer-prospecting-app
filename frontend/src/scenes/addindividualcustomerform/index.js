@@ -49,7 +49,7 @@ const AddIndividualCustomerForm = () => {
   return (
     <Box m="20px">
       <Header
-        title="Pessoa Jurídica"
+        title="Pessoa Física"
         subtitle="Cadastrar novo cliente"
       />
 
