@@ -91,8 +91,8 @@ http://localhost:3000/
 
 ### 1. Estrutura de tabelas
 
-IndividualCustomer: Pessoa Física
-LegalEntityCustomer: Pessoa Jurídica
+- IndividualCustomer: Pessoa Física
+- LegalEntityCustomer: Pessoa Jurídica
 
 ```mermaid
 classDiagram
