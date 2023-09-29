@@ -70,7 +70,7 @@ http://localhost:3000/
 
 ### 1. Rodar o backend
 
-[Instruções para rodar backend sem o Docker](https://github.com/Akaori/customer-prospecting-app/tree/main/frontend)
+[Instruções para rodar backend sem o Docker](https://github.com/Akaori/customer-prospecting-app/tree/main/backend)
 
 ### 2. Rodar o frontend
 
