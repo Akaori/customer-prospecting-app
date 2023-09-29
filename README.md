@@ -71,6 +71,13 @@ Acessar em:
 http://localhost:3000/
 ```
 
+## Acessibilidade WCAG 2 no Frontend
+
+É possível ver alguns pontos da acessbilidade do site no seguinte pull request:
+
+https://github.com/Akaori/customer-prospecting-app/pull/44
+
+
 ## Como entrar no H2
 
 - Acessar a seguinte URL:

@@ -116,6 +116,7 @@ const AddIndividualCustomerForm = () => {
               }}
             >
               <TextField
+                autoFocus={true}
                 fullWidth
                 variant="filled"
                 type="text"
