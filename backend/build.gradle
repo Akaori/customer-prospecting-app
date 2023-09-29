@@ -8,8 +8,8 @@ plugins {
 jacocoTestReport {
     reports {
         xml.required = false
-        csv.required = false
-        html.required = true
+        csv.required = true
+        html.required = false
     }
 }
 
