@@ -9,6 +9,8 @@ Aplicação full-stack (front-end e back-end) para manter um pré-cadastro de cl
 
 Além disso, possui um sistema de fila de atendimento ao prospects, para que cada cliente possa ser analisado de forma sequencial pelos gestores comerciais.
 
+Para ver o projeto, clique [aqui](https://github.com/users/Akaori/projects/3)
+
 # 💻 Instruções para rodar aplicação com o Docker
 
 > É necessário ter o docker e docker-compose instalados. Para instalar no Ubuntu, seguir o seguinte tutorial: 
@@ -84,7 +86,7 @@ http://localhost:3000/
 
 # 🌐 Overview do Projeto
 
-## Estrutura de tabelas
+### Estrutura de tabelas
 
 ```mermaid
 classDiagram
@@ -107,14 +109,12 @@ class LegalEntityCustomer {
 }
 ```
 
-## Acessibilidade WCAG 2 no Frontend
+### Acessibilidade WCAG 2 no Frontend
 
-É possível ver alguns pontos da acessbilidade do site no seguinte pull request:
-
-https://github.com/Akaori/customer-prospecting-app/pull/44
+É possível ver alguns pontos da acessbilidade do site no seguinte pull request: https://github.com/Akaori/customer-prospecting-app/pull/44
 
 
-## Testes automatizados
+### Testes automatizados
 
-- Testes unitários para os serviços
+- [Testes unitários para os serviços do backend](https://github.com/Akaori/customer-prospecting-app/tree/main/backend/src/test/java/com/challenge/customerprospecting/service)
 - CI com [Github Actions](https://github.com/Akaori/customer-prospecting-app/actions)
