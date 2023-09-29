@@ -1,0 +1,37 @@
+name: Jacoco with Java Gradle
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  jacoco-java-gradle:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+      
+    - name: Run Tests
+      run: ./gradlew test
+      working-directory: backend
+
+    - name: Run Test Coverage
+      run: ./gradlew jacocoTestReport
+      working-directory: backend
+
+    - name: Generate JaCoCo Badge
+      uses: cicirello/jacoco-badge-generator@v2
+      with:
+        generate-branches-badge: true
+        jacoco-csv-file: backend/build/reports/jacoco/test/jacocoTestReport.csv
