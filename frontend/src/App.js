@@ -12,6 +12,7 @@ import EditIndividualCustomerForm from "./scenes/editindividualcustomerform";
 import IndividualCustomerList from "./scenes/individualcustomerlist";
 import ProspectLegalEntityCustomer from "./scenes/prospectlegalentitycustomer";
 import ProspectIndividualCustomer from "./scenes/prospectindividualcustomer";
+import PageNotFound from "./scenes/pagenotfound";
 
 function App() {
   const [theme, colorMode] = useMode();
@@ -67,6 +68,10 @@ function App() {
               <Route
                 path="/pessoa-fisica/prospectar"
                 element={<ProspectIndividualCustomer />}
+              />
+              <Route
+                path="*"
+                element={<PageNotFound />}
               />
             </Routes>
           </main>
