@@ -6,9 +6,11 @@ plugins {
 }
 
 jacocoTestReport {
-	reports {
-		csv.enabled true
-	}
+    reports {
+        xml.required = false
+        csv.required = false
+        html.required = true
+    }
 }
 
 group = 'com.challenge'
