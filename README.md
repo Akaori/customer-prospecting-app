@@ -5,6 +5,12 @@
 
 # Instruções para rodar aplicação com o Docker
 
+> É necessário ter o docker e docker-compose instalados. Para instalar no Ubuntu, seguir o seguinte tutorial: 
+> https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04-pt
+
+
+> Se não tiver o Docker instalado, abaixo há instruções para rodar a aplicação sem o Docker.
+
 ### 1. Clonar repositório
 
 ```
@@ -19,8 +25,6 @@ cd customer-prospecting-app
 ```
 
 ### 3. Subir serviços com o docker-compose
-> É necessário ter o docker e docker-compose instalados. Para instalar no Ubuntu, seguir o seguinte tutorial: 
-> https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04-pt
 
 ```
 docker-compose up
@@ -60,6 +64,17 @@ http://localhost:3000/
 ```
 
 ![frontend.png](images/frontend.png)
+
+
+# Instruções para rodar aplicação sem o Docker
+
+### 1. Rodar o backend
+
+[Instruções para rodar backend sem o Docker](https://github.com/Akaori/customer-prospecting-app/tree/main/frontend)
+
+### 2. Rodar o frontend
+
+[Instruções para rodar frontend sem o Docker](https://github.com/Akaori/customer-prospecting-app/tree/main/frontend)
 
 
 # Overview do Projeto
