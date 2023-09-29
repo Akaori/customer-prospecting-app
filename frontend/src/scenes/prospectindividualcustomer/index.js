@@ -71,7 +71,6 @@ const ProspectIndividualCustomer = () => {
         container
         spacing={0}
         direction="column"
-        sx={{ minHeight: "100vh" }}
       >
         <Grid
           item
