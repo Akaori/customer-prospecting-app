@@ -133,6 +133,10 @@ Para cada tipo de cliente (pessoa jurídica e pessoa física), há os seguintes 
 - [Testes unitários para os serviços do backend](https://github.com/Akaori/customer-prospecting-app/tree/main/backend/src/test/java/com/challenge/customerprospecting/service)
 - CI com [Github Actions](https://github.com/Akaori/customer-prospecting-app/actions)
 
+### 5. Segurança
+
+Para a aplicação backend, foi configurado o [Basic Auth e CORS](https://github.com/Akaori/customer-prospecting-app/blob/main/backend/src/main/java/com/challenge/customerprospecting/config/SecurityConfig.java).
+
 
 ## Frontend
 
