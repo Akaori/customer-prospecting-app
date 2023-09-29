@@ -1,5 +1,9 @@
 import { Box, useTheme, Button, Grid } from "@mui/material";
-import { useState, useEffect } from "react";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import { useState } from "react";
 import { tokens } from "../../theme";
 import Header from "../../components/Header";
 import axios from "axios";
@@ -13,6 +17,12 @@ const ProspectIndividualCustomer = () => {
   const colors = tokens(theme.palette.mode);
   const navigate = useNavigate();
   const [customer, setCustomer] = useState([]);
+  const [dialog, setDialog] = useState({ message: "" });
+  const [open, setOpen] = useState(false);
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const prospectCustomer = () => {
     axios
@@ -23,8 +33,21 @@ const ProspectIndividualCustomer = () => {
         },
       })
       .then((response) => {
-        console.log(response);
-        setCustomer(response.data);
+        if (response.status === 200) {
+          setCustomer(response.data);
+        } else if (response.status === 204) {
+          setCustomer({});
+          setDialog({
+            message: "Não há clientes na fila no momento. Tente mais tarde.",
+          });
+          setOpen(true);
+        }
+      })
+      .catch((err) => {
+        setDialog({
+          message: `Ocorreu um erro inesperado: ${err}`,
+        });
+        setOpen(true);
       });
   };
 
@@ -116,6 +139,21 @@ const ProspectIndividualCustomer = () => {
           </Card>
         </Grid>
       </Grid>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            {dialog.message}
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Ok</Button>
+        </DialogActions>
+      </Dialog>
     </Box>
   );
 };
