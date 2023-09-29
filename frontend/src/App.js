@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ColorModeContext, useMode } from "./theme";
 import { CssBaseline, ThemeProvider } from "@mui/material";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Topbar from "./scenes/global/Topbar";
 import Sidebar from "./scenes/global/Sidebar";
 import LegalEntityCustomerList from "./scenes/legalentitycustomerlist";
@@ -27,6 +27,15 @@ function App() {
             <Topbar />
 
             <Routes>
+              <Route
+                path="/"
+                element={
+                  <Navigate
+                    to="/pessoa-juridica/clientes"
+                    replace
+                  />
+                }
+              />
               <Route
                 path="/pessoa-juridica/clientes"
                 element={<LegalEntityCustomerList />}

@@ -1,4 +1,8 @@
 import { Box, useTheme, Button } from "@mui/material";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
 import { useState, useEffect } from "react";
 import { tokens } from "../../theme";
 import Header from "../../components/Header";
@@ -13,6 +17,12 @@ const IndividualCustomerList = () => {
   const colors = tokens(theme.palette.mode);
   const navigate = useNavigate();
   const [customers, setCustomers] = useState([]);
+  const [dialog, setDialog] = useState({ message: "" });
+  const [open, setOpen] = useState(false);
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const getCustomers = () => {
     axios
@@ -23,7 +33,18 @@ const IndividualCustomerList = () => {
         },
       })
       .then((response) => {
-        setCustomers(response.data);
+        if (response.status === 200) {
+          setCustomers(response.data);
+        } else {
+          setDialog({ message: "Ocorreu um erro inesperado" });
+          setOpen(true);
+        }
+      })
+      .catch((err) => {
+        setDialog({
+          message: `Ocorreu um erro inesperado: ${err}`,
+        });
+        setOpen(true);
       });
   };
 
@@ -42,7 +63,20 @@ const IndividualCustomerList = () => {
         },
       })
       .then((response) => {
-        getCustomers();
+        if (response.status === 200) {
+          getCustomers();
+          setDialog({ message: "Cliente deletado com sucesso" });
+          setOpen(true);
+        } else {
+          setDialog({ message: "Ocorreu um erro inesperado" });
+          setOpen(true);
+        }
+      })
+      .catch((err) => {
+        setDialog({
+          message: `Ocorreu um erro inesperado: ${err}`,
+        });
+        setOpen(true);
       });
   };
 
@@ -102,6 +136,21 @@ const IndividualCustomerList = () => {
           columns={columns}
         />
       </Box>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            {dialog.message}
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Ok</Button>
+        </DialogActions>
+      </Dialog>
     </Box>
   );
 };

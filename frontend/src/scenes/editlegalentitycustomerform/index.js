@@ -1,6 +1,7 @@
 import { Box, Button, TextField } from "@mui/material";
+import Alert from "@mui/material/Alert";
 import { Formik } from "formik";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -11,6 +12,16 @@ const EditLegalEntityCustomerForm = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const { id } = useParams();
   const formikRef = useRef();
+  const [alert, setAlert] = useState({ message: "", severity: "" });
+  const [open, setOpen] = useState(false);
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
 
   const initialValues = {
     corporateName: "",
@@ -32,13 +43,24 @@ const EditLegalEntityCustomerForm = () => {
       .then((response) => {
         if (response.status === 200) {
           formikRef.current.setValues(response.data);
+        } else {
+          setAlert({
+            message: `Ocorreu um erro inesperado: ${response.status}`,
+            severity: "error",
+          });
+          setOpen(true);
         }
-        // TO DO - if status not 200, show error alert
+      })
+      .catch((err) => {
+        setAlert({
+          message: `Ocorreu um erro inesperado: ${err}`,
+          severity: "error",
+        });
+        setOpen(true);
       });
   };
 
   useEffect(() => {
-    console.log("ID", id);
     getCustomerById(id);
   }, []);
 
@@ -87,9 +109,36 @@ const EditLegalEntityCustomerForm = () => {
         }
       )
       .then((response) => {
-        // TO DO - if status 201 show snackbar that was succesful
-        // TO DO - if status not 201, show error alert
-        // TO DO - reset values
+        if (response.status === 200) {
+          setAlert({
+            message: "Cliente atualizado com sucesso",
+            severity: "success",
+          });
+          setOpen(true);
+        } else {
+          setAlert({
+            message: `Ocorreu um erro inesperado: ${response.status}`,
+            severity: "error",
+          });
+          setOpen(true);
+        }
+      })
+      .catch((err) => {
+        if (err.response) {
+          if (err.response.status === 409) {
+            setAlert({
+              message: `Já há um cliente cadastrado com o CNPJ informado. Tente com outro CNPJ.`,
+              severity: "error",
+            });
+            setOpen(true);
+          }
+        } else {
+          setAlert({
+            message: `Ocorreu um erro inesperado: ${err}`,
+            severity: "error",
+          });
+          setOpen(true);
+        }
       });
   };
 
@@ -218,6 +267,15 @@ const EditLegalEntityCustomerForm = () => {
           </form>
         )}
       </Formik>
+      {open && (
+        <Alert
+          sx={{ mt: 2.0 }}
+          onClose={handleClose}
+          severity={alert.severity}
+        >
+          {alert.message}
+        </Alert>
+      )}
     </Box>
   );
 };

@@ -1,4 +1,6 @@
 import { Box, Button, TextField } from "@mui/material";
+import Alert from "@mui/material/Alert";
+import { useState } from "react";
 import { Formik } from "formik";
 import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -7,6 +9,16 @@ import axios from "axios";
 
 const Form = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
+  const [alert, setAlert] = useState({ message: "", severity: "" });
+  const [open, setOpen] = useState(false);
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
 
   const initialValues = {
     corporateName: "",
@@ -48,7 +60,6 @@ const Form = () => {
   });
 
   const addCustomer = (values) => {
-    console.log(values);
     axios
       .post("http://localhost:8080/api/v1/legal-entity-customers", values, {
         auth: {
@@ -57,9 +68,31 @@ const Form = () => {
         },
       })
       .then((response) => {
-        // TO DO - if status 201 show snackbar that was succesful
-        // TO DO - if status not 201, show error alert
-        // TO DO - reset values
+        if (response.status === 201) {
+          setAlert({
+            message: "Cliente salvo com sucesso",
+            severity: "success",
+          });
+          setOpen(true);
+        }
+      })
+      .catch((err) => {
+        if (err.response) {
+          if (err.response.status === 409) {
+            setAlert({
+              message: `Já há um cliente cadastrado com o CNPJ informado. Edite o cadastro
+            ou tente com outro CNPJ.`,
+              severity: "error",
+            });
+            setOpen(true);
+          }
+        } else {
+          setAlert({
+            message: `Ocorreu um erro inesperado: ${err}`,
+            severity: "error",
+          });
+          setOpen(true);
+        }
       });
   };
 
@@ -187,6 +220,15 @@ const Form = () => {
           </form>
         )}
       </Formik>
+      {open && (
+        <Alert
+          sx={{ mt: 2.0 }}
+          onClose={handleClose}
+          severity={alert.severity}
+        >
+          {alert.message}
+        </Alert>
+      )}
     </Box>
   );
 };
