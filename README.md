@@ -150,7 +150,15 @@ Para a aplicação backend, foi configurado o [Basic Auth e CORS](https://github
 
 ### 1. Tela de criação
 
+- Validação dos campos
 ![create_form.png](images/create_form.png)
+
+- Alerta de sucesso
+![sucess.png](images/sucess.png)
+
+- Alerta de erro
+![failure.png](images/failure.png)
+
 
 ### 2. Tela de consulta, alteração e exclusão
 
