@@ -3,7 +3,13 @@
 ![test workflow](https://github.com/Akaori/customer-prospecting-app/actions/workflows/test.yaml/badge.svg)
 
 
-# Instruções para rodar aplicação com o Docker
+# 🔍 Sobre
+
+Aplicação full-stack (front-end e back-end) para manter um pré-cadastro de clientes (prospect) para possibilitar uma futura oferta de produtos e serviços a esses clientes.
+
+Além disso, possui um sistema de fila de atendimento ao prospects, para que cada cliente possa ser analisado de forma sequencial pelos gestores comerciais.
+
+# 💻 Instruções para rodar aplicação com o Docker
 
 > É necessário ter o docker e docker-compose instalados. Para instalar no Ubuntu, seguir o seguinte tutorial: 
 > https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04-pt
@@ -32,7 +38,17 @@ docker-compose up
 
 Os serviços de backend e frontend subirão automaticamente.
 
-# Instruções de acesso aos serviços
+# 💻 Instruções para rodar aplicação sem o Docker
+
+### 1. Rodar o backend
+
+[Instruções para rodar backend sem o Docker](https://github.com/Akaori/customer-prospecting-app/tree/main/backend)
+
+### 2. Rodar o frontend
+
+[Instruções para rodar frontend sem o Docker](https://github.com/Akaori/customer-prospecting-app/tree/main/frontend)
+
+# 💡 Instruções de acesso aos serviços
 
 ### 1. Como entrar no Swagger
 
@@ -66,18 +82,7 @@ http://localhost:3000/
 ![frontend.png](images/frontend.png)
 
 
-# Instruções para rodar aplicação sem o Docker
-
-### 1. Rodar o backend
-
-[Instruções para rodar backend sem o Docker](https://github.com/Akaori/customer-prospecting-app/tree/main/backend)
-
-### 2. Rodar o frontend
-
-[Instruções para rodar frontend sem o Docker](https://github.com/Akaori/customer-prospecting-app/tree/main/frontend)
-
-
-# Overview do Projeto
+# 🌐 Overview do Projeto
 
 ## Estrutura de tabelas
 
