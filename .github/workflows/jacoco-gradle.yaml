@@ -21,18 +21,18 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin'
-        
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
       
     - name: Run Tests
       run: ./gradlew test
+      working-directory: backend
 
     - name: Run Test Coverage
       run: ./gradlew jacocoTestReport
+      working-directory: backend
 
     - name: Generate JaCoCo Badge
       uses: cicirello/jacoco-badge-generator@v2
       with:
         generate-branches-badge: true
         jacoco-csv-file: build/reports/jacoco/test/jacocoTestReport.csv
+      working-directory: backend
