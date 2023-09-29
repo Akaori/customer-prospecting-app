@@ -130,11 +130,17 @@ const LegalEntityCustomerList = () => {
         height="75vh"
       >
         <DataGrid
+          experimentalFeatures={{ ariaV7: true }}
           autoHeight
           hideFooterPagination
           rowSpacingType="border"
           rows={customers}
           columns={columns}
+          sx={{
+            "& .MuiDataGrid-cell:focus": {
+              backgroundColor: "SteelBlue",
+            },
+          }}
         />
       </Box>
       <Dialog
