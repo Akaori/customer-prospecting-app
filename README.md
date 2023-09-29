@@ -86,7 +86,10 @@ http://localhost:3000/
 
 # 🌐 Overview do Projeto
 
-### Estrutura de tabelas
+
+## Backend
+
+### 1. Estrutura de tabelas
 
 ```mermaid
 classDiagram
@@ -109,12 +112,53 @@ class LegalEntityCustomer {
 }
 ```
 
-### Acessibilidade WCAG 2 no Frontend
+### 2. Validação dos campos no backend
 
-É possível ver alguns pontos da acessbilidade do site no seguinte pull request: https://github.com/Akaori/customer-prospecting-app/pull/44
+![validations.png](images/validations.png)
 
+### 3. Endpoints 
 
-### Testes automatizados
+Para cada tipo de cliente (pessoa jurídica e pessoa física), há os seguintes endpoints:
+- criação de pré-cadastros de clientes
+- alteração de pré-cadastros de clientes
+- exclusão de pré-cadastros de clientes
+- consulta por id de pré-cadastros de clientes
+- consulta de todos os pré-cadastros de clientes
+- retirada do próximo cliente da fila de atendimento
+
+![endpoints.png](images/endpoints.png)
+
+### 4. Testes automatizados
 
 - [Testes unitários para os serviços do backend](https://github.com/Akaori/customer-prospecting-app/tree/main/backend/src/test/java/com/challenge/customerprospecting/service)
 - CI com [Github Actions](https://github.com/Akaori/customer-prospecting-app/actions)
+
+
+## Frontend
+
+### Dark theme e Light theme
+
+![dark.png](images/dark.png)
+![light.png](images/light.png)
+
+### 1. Tela de criação
+
+![create_form.png](images/create_form.png)
+
+### 2. Tela de consulta, alteração e exclusão
+
+![list_customers.png](images/list_customers.png)
+
+### 3. Tela de recuperar prospect da fila
+
+Quando há clientes na fila:
+
+![prospect.png](images/prospect.png)
+
+Quando não há clientes na fila:
+
+![no_customers.png](images/no_customers.png)
+
+### 4. Acessibilidade WCAG 2 no Frontend
+
+É possível ver alguns pontos da acessbilidade do site no seguinte pull request: https://github.com/Akaori/customer-prospecting-app/pull/44
