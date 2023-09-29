@@ -131,7 +131,12 @@ Para cada tipo de cliente (pessoa jurídica e pessoa física), há os seguintes 
 
 ![endpoints.png](images/endpoints.png)
 
-### 4. Testes automatizados
+### 4. Fila de atendimento
+
+Implementado na linguagem java uma estrutura de dados para uma fila, onde seja possível acrescentar e retirar clientes na fila no modelo FIFO (First In, First Out).
+
+
+### 5. Testes automatizados
 
 - [Testes unitários para os serviços do backend](https://github.com/Akaori/customer-prospecting-app/tree/main/backend/src/test/java/com/challenge/customerprospecting/service)
 - CI com [Github Actions](https://github.com/Akaori/customer-prospecting-app/actions)
