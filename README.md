@@ -138,7 +138,7 @@ Implementado na linguagem java uma estrutura de dados para uma fila, onde seja p
 
 ### 5. Testes automatizados
 
-- [Testes unitários para os serviços do backend](https://github.com/Akaori/customer-prospecting-app/tree/main/backend/src/test/java/com/challenge/customerprospecting/service)
+- [Testes unitários para todos os serviços do backend](https://github.com/Akaori/customer-prospecting-app/tree/main/backend/src/test/java/com/challenge/customerprospecting/service)
 - CI com [Github Actions](https://github.com/Akaori/customer-prospecting-app/actions)
 
 ### 5. Segurança
