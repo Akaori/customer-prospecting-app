@@ -126,6 +126,7 @@ const Form = () => {
               }}
             >
               <TextField
+                autoFocus={true}
                 fullWidth
                 variant="filled"
                 type="text"
