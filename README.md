@@ -179,7 +179,11 @@ Quando não há clientes na fila:
 
 ![no_customers.png](images/no_customers.png)
 
-### 4. Acessibilidade WCAG 2 no Frontend
+### 4.Tela para página não encontrada 404
+
+![img.png](images/404.png)
+
+### 5. Acessibilidade WCAG 2 no Frontend
 
 É possível ver alguns pontos da acessbilidade do site no seguinte pull request: https://github.com/Akaori/customer-prospecting-app/pull/44
 
