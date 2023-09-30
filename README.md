@@ -1,7 +1,7 @@
 # Customer Prospecting App
 
 ![test workflow](https://github.com/Akaori/customer-prospecting-app/actions/workflows/test.yaml/badge.svg)
-
+![coverage](https://github.com/Akaori/customer-prospecting-app/blob/main/.github/badges/jacoco.svg)
 
 # 🔍 Sobre
 
