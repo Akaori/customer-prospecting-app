@@ -1,10 +1,9 @@
-import { Box, useTheme, Button } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import { useState, useEffect } from "react";
-import { tokens } from "../../theme";
 import Header from "../../components/Header";
 import { DataGrid } from "@mui/x-data-grid";
 import axios from "axios";
@@ -12,8 +11,6 @@ import Stack from "@mui/material/Stack";
 import { useNavigate } from "react-router-dom";
 
 const LegalEntityCustomerList = () => {
-  const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
   const navigate = useNavigate();
   const [customers, setCustomers] = useState([]);
   const [dialog, setDialog] = useState({ message: "" });
