@@ -7,7 +7,6 @@ import { useState } from "react";
 import { tokens } from "../../theme";
 import Header from "../../components/Header";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
@@ -15,7 +14,6 @@ import Typography from "@mui/material/Typography";
 const ProspectIndividualCustomer = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const navigate = useNavigate();
   const [customer, setCustomer] = useState([]);
   const [dialog, setDialog] = useState({ message: "" });
   const [open, setOpen] = useState(false);
