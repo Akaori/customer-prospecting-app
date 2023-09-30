@@ -40,6 +40,8 @@ docker-compose up
 
 Os serviços de backend e frontend subirão automaticamente.
 
+> O frontend pode ter alguns warnings, mas é possível acessar ele normalmente em `http://localhost:3000/`
+
 # 💻 Instruções para rodar aplicação sem o Docker
 
 ### 1. Rodar o backend
@@ -49,6 +51,8 @@ Os serviços de backend e frontend subirão automaticamente.
 ### 2. Rodar o frontend
 
 [Instruções para rodar frontend sem o Docker](https://github.com/Akaori/customer-prospecting-app/tree/main/frontend)
+
+> O frontend pode ter alguns warnings, mas é possível acessar ele normalmente em `http://localhost:3000/`
 
 # 💡 Instruções de acesso aos serviços
 
